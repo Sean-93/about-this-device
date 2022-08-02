@@ -9,6 +9,7 @@ body {
 .ascii-monitor {
   font-size: 0.25vw;
   text-align: center;
+  font-weight: 900;
 }
 
 b {
