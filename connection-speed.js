@@ -41,7 +41,7 @@ function MeasureConnectionSpeed() {
 
     if (speedMbps > 1) {
       ShowProgressMessage(
-        "&#x25C6;	Connection speed: " +
+        "&#x25C6; Connection speed: " +
           "<b>" +
           speedMbps +
           " Mbps" +
@@ -49,7 +49,7 @@ function MeasureConnectionSpeed() {
       );
     } else if (speedKbps > 1) {
       ShowProgressMessage(
-        "&#x25C6;	Connection speed: " +
+        "&#x25C6; Connection speed: " +
           "<b>" +
           speedKbps +
           " kbps" +
@@ -57,7 +57,7 @@ function MeasureConnectionSpeed() {
       );
     } else {
       ShowProgressMessage(
-        "&#x25C6;	Connection speed: " + "<b>" + speedBps + " bps" + "</b>"
+        "&#x25C6; Connection speed: " + "<b>" + speedBps + " bps" + "</b>"
       );
     }
   }

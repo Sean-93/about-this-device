@@ -5,7 +5,7 @@
 // DETECTS IF SITE IS BEING VIEWED VIA FACEBOOK'S BROWSER AND GIVES AN ALERT
 
 function isFacebookApp() {
-    var ua = navigator.userAgent || navigator.vendor || window.opera;
+    const ua = navigator.userAgent || navigator.vendor || window.opera;
     return ua.indexOf("FBAN") > -1 || ua.indexOf("FBAV") > -1;
   }
   

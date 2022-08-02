@@ -1,3 +1,5 @@
+// DETECTS DEVICE TYPE AND OUTPUTS TO THE DOM
+
 const deviceType = () => {
     const ua = navigator.userAgent;
     if (/(tablet|ipad|playbook|silk)|(android(?!.*mobi))/i.test(ua)) {
