@@ -13,7 +13,7 @@ function ShowProgressMessage(msg) {
 // MAIN FUNCTION THAT INITIALIZES THE OTHER FUNCTIONS- IS CALLED AT BOTTOM
 
 function InitiateSpeedDetection() {
-  ShowProgressMessage("Checking speed, please wait...");
+  ShowProgressMessage("&#x25C6; Checking speed, please wait...");
   window.setTimeout(MeasureConnectionSpeed, 0);
 }
 
@@ -27,7 +27,7 @@ function MeasureConnectionSpeed() {
     showResults();
   };
   download.onerror = function (err, msg) {
-    ShowProgressMessage("Invalid image, or error downloading");
+    ShowProgressMessage("&#x25C6; Invalid image, or error downloading");
   };
   startTime = new Date().getTime();
   const cacheBuster = "?nnn=" + startTime;
@@ -40,11 +40,25 @@ function MeasureConnectionSpeed() {
     const speedMbps = (speedKbps / 1024).toFixed(2);
 
     if (speedMbps > 1) {
-      ShowProgressMessage("Your connection speed is " + speedMbps + " Mbps");
+      ShowProgressMessage(
+        "&#x25C6;	Connection speed: " +
+          "<b>" +
+          speedMbps +
+          " Mbps" +
+          "</b>"
+      );
     } else if (speedKbps > 1) {
-      ShowProgressMessage("Your connection speed is " + speedKbps + " kbps");
+      ShowProgressMessage(
+        "&#x25C6;	Connection speed: " +
+          "<b>" +
+          speedKbps +
+          " kbps" +
+          "</b>"
+      );
     } else {
-      ShowProgressMessage("Your connection speed is " + speedBps + " bps");
+      ShowProgressMessage(
+        "&#x25C6;	Connection speed: " + "<b>" + speedBps + " bps" + "</b>"
+      );
     }
   }
 }

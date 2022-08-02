@@ -1,0 +1,61 @@
+body {
+  background-color: black;
+  color: aqua;
+  margin: 5% 35%;
+  font-family: monospace;
+  font-size: 1vw;
+}
+
+.ascii-monitor {
+  font-size: 0.25vw;
+  text-align: center;
+}
+
+.description {
+  background-color: aqua;
+  color: black;
+  margin: 5%;
+  padding: 1.5%;
+  font-size: 1.25vw;
+}
+
+b {
+  text-decoration: underline;
+}
+
+@media only screen and (max-width: 1600px) {
+  body {
+    margin: 5% 25%;
+    font-size: 1.5vw;
+  }
+}
+
+@media only screen and (max-width: 1200px) {
+  body {
+    margin: 5% 20%;
+    font-size: 2.5vw;
+  }
+
+  .description {
+    font-size: 3vw;
+  }
+
+  .ascii-monitor {
+    font-size: 0.5vw;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  body {
+    margin: 5%;
+    font-size: 4.5vw;
+  }
+
+  .description {
+    font-size: 3.5vw;
+  }
+
+  .ascii-monitor {
+    font-size: 0.75vw;
+  }
+}
