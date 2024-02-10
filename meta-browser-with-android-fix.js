@@ -5,11 +5,11 @@ const metaBrowserFix = () => {
 
   // Consolidated condition
   if (/android/i.test(userAgent) && (userAgent.includes('FBAN') || userAgent.includes('FBAV') || userAgent.includes('Instagram'))) {
-      const moonContainer = document.getElementById("moonContainer");
+    const screenContainer = document.getElementById("screenContainer");
 
-      moonContainer.style.transform = "scale(0.25)";
-      moonContainer.style.marginTop = "-95%";
-      moonContainer.style.marginBottom = "-85%";
+    screenContainer.style.transform = "scale(0.25)";
+    screenContainer.style.marginTop = "-95%";
+    screenContainer.style.marginBottom = "-85%";
   }
 };
 
