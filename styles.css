@@ -2,12 +2,13 @@ body {
   background-color: black;
   color: aqua;
   font-family: monospace;
+  padding: 1rem;
 }
 
 pre {
   text-align: center;
   font-weight: 900;
-  font-size: 5px;
+  font-size: .5vh;
 }
 
 #screenContainer {
@@ -31,19 +32,9 @@ b {
   color: white;
 }
 
-
-@media only screen and (max-width: 1600px) {}
-
-@media only screen and (max-width: 600px) {
-  pre {
-    font-size: 3px;
-  }
-
-}
-
 @media only screen and (max-width: 300px) {
   pre {
-    font-size: 2px;
+    font-size: .35vh;
   }
 
 }
