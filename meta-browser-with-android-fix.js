@@ -7,8 +7,8 @@ const metaBrowserFix = () => {
   if (/android/i.test(userAgent) && (userAgent.includes('FBAN') || userAgent.includes('FBAV') || userAgent.includes('Instagram'))) {
       const moonContainer = document.getElementById("moonContainer");
 
-      moonContainer.style.transform = "scale(0.333)";
-      moonContainer.style.margin = "-95%";
+      moonContainer.style.transform = "scale(0.25)";
+      moonContainer.style.marginTop = "-95%";
       moonContainer.style.marginBottom = "-85%";
   }
 };

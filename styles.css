@@ -1,15 +1,18 @@
 body {
   background-color: black;
   color: aqua;
-  margin: 5% 35%;
   font-family: monospace;
-  font-size: 1vw;
 }
 
-.ascii-monitor {
-  font-size: 0.25vw;
+pre {
   text-align: center;
   font-weight: 900;
+  font-size: 5px;
+}
+
+section {
+  max-width: 20rem;
+  margin: 0 auto;
 }
 
 b {
@@ -17,59 +20,21 @@ b {
   color: white;
 }
 
-.ascii-footer-art {
-  font-size: 0.05vw;
-  text-align: center;
-  font-weight: 900;
-  display: none;
-}
-
-.footer-monitor {
-  animation: footer_monitor_alternation 6s ease-in-out infinite;
-}
 
 @media only screen and (max-width: 1600px) {
-  body {
-    margin: 5% 25%;
-    font-size: 1.5vw;
-  }
 
-  .ascii-footer-art {
-    font-size: 0.15vw;
-  }
-}
-
-@media only screen and (max-width: 1200px) {
-  body {
-    margin: 5% 20%;
-    font-size: 2.5vw;
-  }
-
-  .ascii-monitor {
-    font-size: 0.5vw;
-  }
-
-  .ascii-footer-art {
-    font-size: 0.25vw;
-  }
 }
 
 @media only screen and (max-width: 600px) {
-  body {
-    margin: 5%;
-    font-size: 4.5vw;
+  pre {
+    font-size: 3px;
   }
 
-  h1 {
-    font-size: 8vw;
+}
+
+@media only screen and (max-width: 300px) {
+  pre {
+    font-size: 2px;
   }
 
-  .ascii-monitor {
-    font-size: 0.75vw;
-  }
-
-  .ascii-footer-art {
-    font-size: 0.2vw;
-    margin-top: -7.5vw;
-  }
 }
