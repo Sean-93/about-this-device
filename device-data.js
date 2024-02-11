@@ -1,4 +1,4 @@
-// DeviceInfo Constructor
+// DEVICE INFO CONSTRUCTOR
 function DeviceInfo() {
   this.userAgent = navigator.userAgent;
   this.vendor = navigator.vendor;
@@ -203,6 +203,7 @@ DeviceInfo.prototype.displayInfo = function () {
   }
 };
 
+// MARQUEE CODE
 let marqueeWidth;
 let containerWidth;
 let animationDuration;
