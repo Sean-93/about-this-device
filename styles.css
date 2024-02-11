@@ -47,6 +47,22 @@ section {
   margin: 0 auto;
 }
 
+@keyframes slideInFromAbove {
+  0% {
+    transform: translateY(-50%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+#device-info-results {
+  opacity: 0;
+  animation: slideInFromAbove 1s ease forwards; /* Adjust the duration and timing function as needed */
+}
+
 b {
   text-decoration: underline;
   color: white;
