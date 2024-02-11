@@ -1,5 +1,19 @@
-console.log(navigator.userAgentData);
-console.log(navigator.userAgent);
+// DeviceInfo Constructor
+function DeviceInfo() {
+  this.userAgent = navigator.userAgent;
+  this.vendor = navigator.vendor;
+  this.platform = navigator.platform;
+  this.language = navigator.language;
+  this.deviceMemory = navigator.deviceMemory || 'Not available'; // Requires HTTPS
+  this.hardwareConcurrency = navigator.hardwareConcurrency || 'Not available';
+  this.colorDepth = screen.colorDepth;
+  this.isOnline = navigator.onLine;
+  this.screenResolution = `${screen.width} x ${screen.height}`;
+  this.browser = this.detectBrowser();
+  this.os = this.detectOS();
+  this.deviceType = this.detectDeviceType();
+  this.connectionSpeed = "Checking..."; // Initially set to checking
+}
 
 // THIS DETECTS THE CURRENT BROWSER BEING USED
 DeviceInfo.prototype.detectBrowser = function () {
@@ -137,55 +151,93 @@ DeviceInfo.prototype.measureConnectionSpeed = function () {
   download.src = imageAddr + cacheBuster;
 };
 
-// PUTS ALL DEVICE DATA IN AN OBJECT
-function DeviceInfo() {
-  this.userAgent = navigator.userAgent;
-  this.vendor = navigator.vendor;
-  this.platform = navigator.platform;
-  this.language = navigator.language;
-  this.deviceMemory = navigator.deviceMemory || 'Not available'; // Requires HTTPS
-  this.hardwareConcurrency = navigator.hardwareConcurrency || 'Not available';
-  this.colorDepth = screen.colorDepth;
-  this.isOnline = navigator.onLine;
-  this.screenResolution = `${screen.width} x ${screen.height}`;
-  this.browser = this.detectBrowser();
-  this.os = this.detectOS();
-  this.deviceType = this.detectDeviceType();
-  this.connectionSpeed = "Checking..."; // Initially set to checking
-}
-
 // OUTPUTS ALL INFO TO THE DOM
 DeviceInfo.prototype.displayInfo = function () {
-  const info = `
-    &#x25C6; Status: <b>${this.isOnline ? 'Online' : 'Offline'}</b><br/>
-    &#x25C6; Connection: <b>${this.connectionSpeed}</b><br/>
-    &#x25C6; Browser: <b>${this.browser}</b><br/>
-    &#x25C6; Vendor: <b>${this.vendor}</b><br/>
-    &#x25C6; Device: <b>${this.deviceType}</b><br/>
-    &#x25C6; System: <b>${this.os}</b><br/>
-    &#x25C6; Platform: <b>${this.platform}</b><br/>
-    &#x25C6; Resolution: <b>${this.screenResolution}</b><br/>
-    &#x25C6; Language: <b>${this.language}</b><br/>
-    &#x25C6; Color Depth: <b>${this.colorDepth}</b><br/>
-    &#x25C6; Device Memory: <b>${this.deviceMemory}gb</b><br/>
-    &#x25C6; CPU Cores: <b>${this.hardwareConcurrency}</b><br/>
-    &#x25C6; User Agent: <b>${this.userAgent}</b><br/>
-  `;
+  const infoData = [
+    `&#x25C6; Status: <b>${this.isOnline ? 'Online' : 'Offline'}</b>`,
+    `&#x25C6; Connection: <b>${this.connectionSpeed}</b>`,
+    `&#x25C6; Browser: <b>${this.browser}</b>`,
+    `&#x25C6; Vendor: <b>${this.vendor}</b>`,
+    `&#x25C6; Device: <b>${this.deviceType}</b>`,
+    `&#x25C6; System: <b>${this.os}</b>`,
+    `&#x25C6; Platform: <b>${this.platform}</b>`,
+    `&#x25C6; Resolution: <b>${this.screenResolution}</b>`,
+    `&#x25C6; Language: <b>${this.language}</b>`,
+    `&#x25C6; Color Depth: <b>${this.colorDepth}</b>`,
+    `&#x25C6; Device Memory: <b>${this.deviceMemory}gb</b>`,
+    `&#x25C6; CPU Cores: <b>${this.hardwareConcurrency}</b>`,
+    `&#x25C6; User Agent: <b>${this.userAgent}</b>`
+  ];
 
-  document.getElementById("device-info-results").innerHTML = info;
+  // Update marquee content
+  const marqueeText = document.querySelector("#marquee");
+  if (marqueeText) {
+    marqueeText.innerHTML = infoData.map(item => `<span>${item}</span>`).join(' ');
+    calculateWidths();
+    animateMarquee();
+  }
 
-  // FADES IN EACH DATA POINT WITH A .25s DELAY
-  setTimeout(() => {
-    const bTags = document.querySelectorAll('#device-info-results b');
-    bTags.forEach((tag, index) => {
-      setTimeout(() => {
-        tag.style.animation = 'fadeIn 1s ease forwards';
-      }, 250 * index);
-    });
-  }, 0);
+  // Update device info results
+  const results = document.getElementById("device-info-results");
+  if (results) {
+    results.innerHTML = infoData.join('<br/>');
+
+    // CODE TO CONCURRENTLY ANIMATE FADE-IN DATA IN <b> TAGS
+    function animateBTags(bTags) {
+      bTags.forEach((tag, index) => {
+        setTimeout(() => {
+          tag.style.animation = 'fadeIn 1s ease forwards';
+        }, 250 * index);
+      });
+    }
+    
+    // FADES IN EACH DATA POINT WITH A .25s DELAY
+    setTimeout(() => {
+      const deviceInfoResultsBTags = document.querySelectorAll('#device-info-results b');
+      const marqueeBTags = document.querySelectorAll('#marquee b');
+    
+      // Call animate function for each NodeList
+      animateBTags(deviceInfoResultsBTags);
+      animateBTags(marqueeBTags);
+    }, 0);
+  }
 };
+
+let marqueeWidth;
+let containerWidth;
+let animationDuration;
+
+// Marquee Animation Functions
+function calculateWidths() {
+  const marqueeText = document.querySelector("#marquee");
+  if (marqueeText) {
+      marqueeWidth = marqueeText.offsetWidth;
+      const container = document.querySelector(".marquee-container");
+      containerWidth = container ? container.offsetWidth : 0;
+      animationDuration = marqueeWidth / 50;
+  }
+}
+
+function animateMarquee() {
+  const marqueeText = document.querySelector("#marquee");
+  if (marqueeText) {
+      marqueeText.style.transform = "translateX(" + containerWidth + "px)";
+      marqueeText.animate([
+          { transform: "translateX(" + containerWidth + "px)" },
+          { transform: "translateX(-" + marqueeWidth + "px)" }
+      ], {
+          duration: animationDuration * 1000,
+          iterations: Infinity
+      });
+  }
+}
 
 // EXECUTION
 const deviceInfo = new DeviceInfo();
-deviceInfo.displayInfo();
 deviceInfo.measureConnectionSpeed(); // This will update the connection speed when done
+
+// Event listener for window resize
+window.addEventListener("resize", () => {
+  calculateWidths();
+  animateMarquee();
+});
