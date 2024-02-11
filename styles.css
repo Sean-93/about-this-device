@@ -18,7 +18,7 @@ pre {
   justify-content: center;
   align-items: center;
   position: relative;
-  margin: 2.5rem auto;
+  margin: 1rem auto;
   overflow: hidden;
   width: fit-content;
   height: fit-content;
@@ -51,7 +51,7 @@ section {
 
 @keyframes slideInFromAbove {
   0% {
-    transform: translateY(-50%);
+    transform: translateY(-200%);
     opacity: 0;
   }
   100% {
@@ -60,9 +60,16 @@ section {
   }
 }
 
+.device-info-results-container {
+  overflow: hidden;
+  border-top: 1px dashed aqua;
+  padding: 1rem;
+}
+
 #device-info-results {
   opacity: 0;
-  animation: slideInFromAbove 1s ease forwards; /* Adjust the duration and timing function as needed */
+  animation: slideInFromAbove 2s ease forwards; /* Adjust the duration and timing function as needed */
+  line-height: -1rem;
 }
 
 b {
