@@ -7,9 +7,10 @@ const metaBrowserFix = () => {
   if (/android/i.test(userAgent) && (userAgent.includes('FBAN') || userAgent.includes('FBAV') || userAgent.includes('Instagram'))) {
     const screenContainer = document.getElementById("screenContainer");
 
-    screenContainer.style.transform = "scale(0.25)";
-    screenContainer.style.marginTop = "-95%";
-    screenContainer.style.marginBottom = "-85%";
+    screenContainer.style.transform = "scale(0.35)";
+    screenContainer.style.marginTop = "-52.5%";
+    screenContainer.style.marginBottom = "-52.5%";
+    screenContainer.style.marginLeft = "-82.5%";
   }
 };
 

@@ -30,9 +30,20 @@ section {
 b {
   text-decoration: underline;
   color: white;
+  opacity: 0;
 }
 
-@media only screen and (max-width: 300px) {
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@media only screen and (max-width: 600px) {
   pre {
     font-size: .35vh;
   }
