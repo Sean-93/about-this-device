@@ -190,12 +190,12 @@ DeviceInfo.prototype.displayInfo = function () {
         }, 250 * index);
       });
     }
-    
+
     // FADES IN EACH DATA POINT WITH A .25s DELAY
     setTimeout(() => {
       const deviceInfoResultsBTags = document.querySelectorAll('#device-info-results b');
       const marqueeBTags = document.querySelectorAll('#marquee b');
-    
+
       // Call animate function for each NodeList
       animateBTags(deviceInfoResultsBTags);
       animateBTags(marqueeBTags);
@@ -211,24 +211,24 @@ let animationDuration;
 function calculateWidths() {
   const marqueeText = document.querySelector("#marquee");
   if (marqueeText) {
-      marqueeWidth = marqueeText.offsetWidth;
-      const container = document.querySelector(".marquee-container");
-      containerWidth = container ? container.offsetWidth : 0;
-      animationDuration = marqueeWidth / 50;
+    marqueeWidth = marqueeText.offsetWidth;
+    const container = document.querySelector(".marquee-container");
+    containerWidth = container ? container.offsetWidth : 0;
+    animationDuration = marqueeWidth / 50;
   }
 }
 
 function animateMarquee() {
   const marqueeText = document.querySelector("#marquee");
   if (marqueeText) {
-      marqueeText.style.transform = "translateX(" + containerWidth + "px)";
-      marqueeText.animate([
-          { transform: "translateX(" + containerWidth + "px)" },
-          { transform: "translateX(-" + marqueeWidth + "px)" }
-      ], {
-          duration: animationDuration * 1000,
-          iterations: Infinity
-      });
+    marqueeText.style.transform = "translateX(" + containerWidth + "px)";
+    marqueeText.animate([
+      { transform: "translateX(" + containerWidth + "px)" },
+      { transform: "translateX(-" + marqueeWidth + "px)" }
+    ], {
+      duration: animationDuration * 1000,
+      iterations: Infinity
+    });
   }
 }
 
@@ -238,6 +238,11 @@ deviceInfo.measureConnectionSpeed(); // This will update the connection speed wh
 
 // Event listener for window resize
 window.addEventListener("resize", () => {
-  calculateWidths();
-  animateMarquee();
+  const newMarqueeWidth = document.querySelector("#marquee").offsetWidth;
+  const newContainerWidth = document.querySelector(".marquee-container").offsetWidth;
+
+  if (newMarqueeWidth !== marqueeWidth || newContainerWidth !== containerWidth) {
+    calculateWidths();
+    animateMarquee();
+  }
 });
